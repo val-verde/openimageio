@@ -60,9 +60,11 @@ ifeq (${SP_OS}, rhel7)
     ifeq (${SPI_COMPILER_PLATFORM},gcc-4.8)
         SPCOMP2_COMPILER ?= gcc48m64
         CMAKE_CXX_STANDARD ?= 11
+        LLVM_VERSION ?= 9.0.1-1
     else
         SPCOMP2_COMPILER ?= gcc63
         CMAKE_CXX_STANDARD ?= 14
+        LLVM_VERSION ?= 10.0.0
     endif
     SP_PLATFORM ?= linux
     SP_PROC ?= x86_64
@@ -115,7 +117,6 @@ ifeq (${SP_OS}, rhel7)
     #
     # A variety of tags can be used to try specific versions of gcc or
     # clang from the site-specific places we have installed them.
-    LLVM_VERSION ?= 10.0.0
     LLVM_DIRECTORY ?= /shots/spi/home/software/packages/llvm/${LLVM_VERSION}/${SPI_COMPILER_PLATFORM}
     ifeq (${COMPILER},clang7)
         LLVM_DIRECTORY := /shots/spi/home/lib/arnold/rhel7/llvm_7.0.1
@@ -265,7 +266,7 @@ ifeq (${SP_OS}, rhel7)
         -DHDF5_LIBRARIES=/usr/lib64/libhdf5.so \
         -DNuke_ROOT=/net/apps/rhel7/foundry/nuke${NUKE_VERSION} \
         -DLibheif_ROOT=${Libheif_ROOT} \
-        -DFFMPEG_INCLUDE_DIR=/usr/include/ffmpegroot/ffmpeg34 \
+        -DFFMPEG_INCLUDES=/usr/include/ffmpegroot/ffmpeg34 \
         -DFFMPEG_LIBRARIES="/usr/lib64/ffmpegroot/ffmpeg345/libavcodec.so;/usr/lib64/ffmpegroot/ffmpeg345/libavformat.so;/usr/lib64/ffmpegroot/ffmpeg345/libavutil.so;/usr/lib64/ffmpegroot/ffmpeg345/libswscale.so;" \
         -DUSE_OPENCV=0 \
         -DVISIBILITY_MAP_FILE:STRING="${working_dir}/site/spi/hidesymbols.map"
