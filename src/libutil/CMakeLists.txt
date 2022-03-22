@@ -25,7 +25,7 @@ target_link_libraries (OpenImageIO_Util
         )
 
 if (WIN32)
-    target_link_libraries (OpenImageIO_Util PRIVATE psapi)
+    target_link_libraries (OpenImageIO_Util PRIVATE bcrypt psapi)
 endif()
 
 target_compile_definitions (OpenImageIO_Util PRIVATE OpenImageIO_EXPORTS)
