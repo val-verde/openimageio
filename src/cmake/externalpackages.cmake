@@ -72,7 +72,8 @@ checked_find_package (Boost REQUIRED
 # On Linux, Boost 1.55 and higher seems to need to link against -lrt
 if (CMAKE_SYSTEM_NAME MATCHES "Linux"
       AND ${Boost_VERSION} VERSION_GREATER_EQUAL 105500)
-    list (APPEND Boost_LIBRARIES "rt")
+    find_library(RT_LIBRARY rt)
+    list (APPEND Boost_LIBRARIES ${RT_LIBRARY})
 endif ()
 
 include_directories (SYSTEM "${Boost_INCLUDE_DIRS}")
