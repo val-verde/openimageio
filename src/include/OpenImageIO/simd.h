@@ -77,12 +77,12 @@
 
 #if defined(__CUDA_ARCH__)
     // Cuda -- don't include any of these headers
-#elif defined(_WIN32)
-#  include <intrin.h>
 #elif defined(__GNUC__) && (defined(__x86_64__) || defined(__i386__)) || defined(__e2k__)
 #  include <x86intrin.h>
 #elif defined(__GNUC__) && defined(__ARM_NEON__)
 #  include <arm_neon.h>
+#elif defined(_WIN32)
+#  include <intrin.h>
 #endif
 
 // Disable SSE for 32 bit Windows patforms, it's unreliable and hard for us
